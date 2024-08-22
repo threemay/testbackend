@@ -16,5 +16,7 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 3000
 
+# ENV MONGO_URL=mongodb://host.docker.internal:27017/goexpert
+
 # Command to run the application
 CMD ["node", "server.js"]

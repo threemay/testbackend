@@ -1,6 +1,6 @@
-const express = require('express');
-const { MongoClient } = require('mongodb');
-const bodyParser = require('body-parser');
+const express = require("express");
+const { MongoClient } = require("mongodb");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 // MongoDB connection URL
 const url = process.env.MONGO_URL;
-const dbName = 'goexpert';
+const dbName = "goexpert";
 
 async function main() {
   const client = new MongoClient(url);
@@ -18,22 +18,32 @@ async function main() {
   try {
     // Connect to the MongoDB cluster
     await client.connect();
-    console.log('Connected to MongoDB');
+    console.log("Connected to MongoDB");
 
     const db = client.db(dbName);
-    const usersCollection = db.collection('users');
+    const usersCollection = db.collection("users");
 
     // Define a route for the root URL
-    app.get('/', (req, res) => {
-      res.send('Hello, World!');
+    app.get("/", (req, res) => {
+      res.send("Hello, World!");
     });
 
     // POST endpoint to add a user
-    app.post('/users', async (req, res) => {
+    app.post("/users", async (req, res) => {
       try {
         const user = req.body;
         const result = await usersCollection.insertOne(user);
         res.status(201).send(result.ops[0]);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
+    // GET endpoint to retrieve all users
+    app.get("/users", async (req, res) => {
+      try {
+        const users = await usersCollection.find({}).toArray();
+        res.status(200).send(users);
       } catch (err) {
         res.status(500).send(err);
       }

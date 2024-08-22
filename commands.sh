@@ -18,5 +18,7 @@ node server.js
 
 # ssh -i /path/to/your-key-pair.pem ec2-user@public-ip
 
-docker-compose up --build 
+# docker-compose up --build 
+
+# curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name": "John Doe333", "email": "john.doe333@example.com"}'
 

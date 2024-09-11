@@ -22,3 +22,11 @@ node server.js
 
 # curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name": "John Doe333", "email": "john.doe333@example.com"}'
 
+
+curl -X POST http://localhost:3000/users \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "John Doe11111",
+           "email": "john.doe@example.com",
+           "age": 30
+         }'

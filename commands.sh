@@ -8,7 +8,7 @@ docker run -d  -p 27017:27017 --name mydb mydb
 
 docker build -t shuoflybuys/mytestapp:latest -f dockerfile .
 
-docker run -d -e MONGO_URL=mongodb://host.docker.internal:27017/goexpert -p 3000:3000 --name myapplication myapplication 
+docker run -d -e MONGO_URL=mongodb://host.docker.internal:27017/goexpert -p 3000:3000 --name myapplication shuoflybuys/mytestapp:latest 
 
 # local test
 

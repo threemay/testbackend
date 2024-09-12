@@ -31,7 +31,7 @@ jobs:
         echo "image=asdasdadsada:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Build, tag, and push image to Amazon ECRasdadasasdadad
-      id: test
+      id: test111312
       env:
         # ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         # ECR_REPOSITORY: my-ecr-repo

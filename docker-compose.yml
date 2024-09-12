@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  mongodb:
+  mongodbaaa:
     image: mongo:latest
     container_name: mongodb
     ports:
@@ -13,8 +13,8 @@ services:
     ports:
       - "80:3000"
     depends_on:
-      - mongodb
+      - mongodbaaa
     environment:
-      MONGO_URL: mongodb://mongodb:27017/goexpert
+      MONGO_URL: mongodb://mongodbaaa:27017/goexpert
 
 

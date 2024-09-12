@@ -1,0 +1,161 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "CdkHelloWorldStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkHelloWorldStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkHelloWorldStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://586520679870/ap-southeast-2",
+      "properties": {
+        "templateFile": "CdkHelloWorldStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::586520679870:role/cdk-hnb659fds-deploy-role-586520679870-ap-southeast-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::586520679870:role/cdk-hnb659fds-cfn-exec-role-586520679870-ap-southeast-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-586520679870-ap-southeast-2/96045ab36c2195d7434b7251f33142435f1cc406226ec33ae6e9f6edf374b2d1.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkHelloWorldStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::586520679870:role/cdk-hnb659fds-lookup-role-586520679870-ap-southeast-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CdkHelloWorldStack.assets"
+      ],
+      "metadata": {
+        "/CdkHelloWorldStack/HelloWorldFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldFunctionServiceRole8E0BD458"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldFunctionB2AB6E79"
+          }
+        ],
+        "/CdkHelloWorldStack/AnotherFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AnotherFunctionServiceRole3F3BA77F"
+          }
+        ],
+        "/CdkHelloWorldStack/AnotherFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AnotherFunctionC9E84F79"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApi9E278160"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApiDeployment65F822B521014a9a8a2f794034811ee0ccc21ffd"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApiDeploymentStageprod2E271AE0"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApiEndpointAD496187"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/hello/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApihello69E87CE7"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/hello/POST/ApiPermission.CdkHelloWorldStackHelloWorldApi9996E75E.POST..hello": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApihelloPOSTApiPermissionCdkHelloWorldStackHelloWorldApi9996E75EPOSThello890F910E"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/hello/POST/ApiPermission.Test.CdkHelloWorldStackHelloWorldApi9996E75E.POST..hello": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApihelloPOSTApiPermissionTestCdkHelloWorldStackHelloWorldApi9996E75EPOSThello3DC0FE40"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/hello/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApihelloPOST3A14A6D4"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/another/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApianother3DC99C8E"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/another/GET/ApiPermission.CdkHelloWorldStackHelloWorldApi9996E75E.GET..another": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApianotherGETApiPermissionCdkHelloWorldStackHelloWorldApi9996E75EGETanother61C3C9C9"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/another/GET/ApiPermission.Test.CdkHelloWorldStackHelloWorldApi9996E75E.GET..another": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApianotherGETApiPermissionTestCdkHelloWorldStackHelloWorldApi9996E75EGETanother0EFC186C"
+          }
+        ],
+        "/CdkHelloWorldStack/HelloWorldApi/Default/another/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldApianotherGETE3E9D56C"
+          }
+        ],
+        "/CdkHelloWorldStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkHelloWorldStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkHelloWorldStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkHelloWorldStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

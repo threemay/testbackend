@@ -1,0 +1,459 @@
+{
+ "Resources": {
+  "HelloWorldFunctionServiceRole8E0BD458": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldFunction/ServiceRole/Resource"
+   }
+  },
+  "HelloWorldFunctionB2AB6E79": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-586520679870-ap-southeast-2",
+     "S3Key": "f0dee53ccda3b38f0057e833bac72233ca0050f11554b3a1b24bdd291764030a.zip"
+    },
+    "Handler": "hello.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "HelloWorldFunctionServiceRole8E0BD458",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x"
+   },
+   "DependsOn": [
+    "HelloWorldFunctionServiceRole8E0BD458"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldFunction/Resource",
+    "aws:asset:path": "asset.f0dee53ccda3b38f0057e833bac72233ca0050f11554b3a1b24bdd291764030a",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AnotherFunctionServiceRole3F3BA77F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/AnotherFunction/ServiceRole/Resource"
+   }
+  },
+  "AnotherFunctionC9E84F79": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-586520679870-ap-southeast-2",
+     "S3Key": "f0dee53ccda3b38f0057e833bac72233ca0050f11554b3a1b24bdd291764030a.zip"
+    },
+    "Handler": "another.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AnotherFunctionServiceRole3F3BA77F",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x"
+   },
+   "DependsOn": [
+    "AnotherFunctionServiceRole3F3BA77F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/AnotherFunction/Resource",
+    "aws:asset:path": "asset.f0dee53ccda3b38f0057e833bac72233ca0050f11554b3a1b24bdd291764030a",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "HelloWorldApi9E278160": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Name": "HelloWorldApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Resource"
+   }
+  },
+  "HelloWorldApiDeployment65F822B521014a9a8a2f794034811ee0ccc21ffd": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Automatically created by the RestApi construct",
+    "RestApiId": {
+     "Ref": "HelloWorldApi9E278160"
+    }
+   },
+   "DependsOn": [
+    "HelloWorldApianotherGETE3E9D56C",
+    "HelloWorldApianother3DC99C8E",
+    "HelloWorldApihelloPOST3A14A6D4",
+    "HelloWorldApihello69E87CE7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Deployment/Resource"
+   }
+  },
+  "HelloWorldApiDeploymentStageprod2E271AE0": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "HelloWorldApiDeployment65F822B521014a9a8a2f794034811ee0ccc21ffd"
+    },
+    "RestApiId": {
+     "Ref": "HelloWorldApi9E278160"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "HelloWorldApihello69E87CE7": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "HelloWorldApi9E278160",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "hello",
+    "RestApiId": {
+     "Ref": "HelloWorldApi9E278160"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/hello/Resource"
+   }
+  },
+  "HelloWorldApihelloPOSTApiPermissionCdkHelloWorldStackHelloWorldApi9996E75EPOSThello890F910E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "HelloWorldFunctionB2AB6E79",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:ap-southeast-2:586520679870:",
+       {
+        "Ref": "HelloWorldApi9E278160"
+       },
+       "/",
+       {
+        "Ref": "HelloWorldApiDeploymentStageprod2E271AE0"
+       },
+       "/POST/hello"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/hello/POST/ApiPermission.CdkHelloWorldStackHelloWorldApi9996E75E.POST..hello"
+   }
+  },
+  "HelloWorldApihelloPOSTApiPermissionTestCdkHelloWorldStackHelloWorldApi9996E75EPOSThello3DC0FE40": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "HelloWorldFunctionB2AB6E79",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:ap-southeast-2:586520679870:",
+       {
+        "Ref": "HelloWorldApi9E278160"
+       },
+       "/test-invoke-stage/POST/hello"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/hello/POST/ApiPermission.Test.CdkHelloWorldStackHelloWorldApi9996E75E.POST..hello"
+   }
+  },
+  "HelloWorldApihelloPOST3A14A6D4": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "HelloWorldFunctionB2AB6E79",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "HelloWorldApihello69E87CE7"
+    },
+    "RestApiId": {
+     "Ref": "HelloWorldApi9E278160"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/hello/POST/Resource"
+   }
+  },
+  "HelloWorldApianother3DC99C8E": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "HelloWorldApi9E278160",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "another",
+    "RestApiId": {
+     "Ref": "HelloWorldApi9E278160"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/another/Resource"
+   }
+  },
+  "HelloWorldApianotherGETApiPermissionCdkHelloWorldStackHelloWorldApi9996E75EGETanother61C3C9C9": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AnotherFunctionC9E84F79",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:ap-southeast-2:586520679870:",
+       {
+        "Ref": "HelloWorldApi9E278160"
+       },
+       "/",
+       {
+        "Ref": "HelloWorldApiDeploymentStageprod2E271AE0"
+       },
+       "/GET/another"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/another/GET/ApiPermission.CdkHelloWorldStackHelloWorldApi9996E75E.GET..another"
+   }
+  },
+  "HelloWorldApianotherGETApiPermissionTestCdkHelloWorldStackHelloWorldApi9996E75EGETanother0EFC186C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AnotherFunctionC9E84F79",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:ap-southeast-2:586520679870:",
+       {
+        "Ref": "HelloWorldApi9E278160"
+       },
+       "/test-invoke-stage/GET/another"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/another/GET/ApiPermission.Test.CdkHelloWorldStackHelloWorldApi9996E75E.GET..another"
+   }
+  },
+  "HelloWorldApianotherGETE3E9D56C": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AnotherFunctionC9E84F79",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "HelloWorldApianother3DC99C8E"
+    },
+    "RestApiId": {
+     "Ref": "HelloWorldApi9E278160"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/HelloWorldApi/Default/another/GET/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/01O207DMAz9lr2nhnbaB2wgnoaYygdMWWpK1iapaodpivLvJOkQfToXHx+7gXpXw/NG3qhS3VCN+gLhk6UaRLLOYZTm0kkIb94q1s6Kly+75iecjSZKKgotDYTWjZgHGaOg7VkSIRPsMyQNB68G5IMkFHLSvWS8yTuEYznUIvF+0qXgQV9xGt3doOXsrlT6si+nFpLyzs8KS/OfeBQt/B3523XZWliM/7nyXi7Sts+JD8+T5/V6FNZ1CFd6+mka2EG9uZLW1ewta4PQLvgLeSNTS1ABAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkHelloWorldStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "HelloWorldApiEndpointAD496187": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "HelloWorldApi9E278160"
+      },
+      ".execute-api.ap-southeast-2.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "HelloWorldApiDeploymentStageprod2E271AE0"
+      },
+      "/"
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

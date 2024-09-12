@@ -7,7 +7,7 @@ const app = new cdk.App();
 new CdkHelloWorldStack(app, 'CdkHelloWorldStack', {
 
   env: {
-    account: "586520679870",
+    account: "",
     region: "ap-southeast-2",
   },
 });

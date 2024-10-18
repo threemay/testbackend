@@ -13,8 +13,8 @@ const url = process.env.MONGO_URL;
 const dbName = "goexpert";
 
 async function main() {
+  // Create a MongoClient with a MongoClientOptions object to set the Stable API version
   const client = new MongoClient(url);
-
   try {
     // Connect to the MongoDB cluster
     await client.connect();

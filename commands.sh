@@ -12,7 +12,7 @@ docker run -d -e MONGO_URL=mongodb://host.docker.internal:27017/goexpert -p 3000
 
 # local test
 
-export MONGO_URL=mongodb://localhost:27017/goexpert
+export MONGO_URL="mongodb+srv://shuoliuflybuys:111222.111222@cluster0.rmy3i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 node server.js
 
